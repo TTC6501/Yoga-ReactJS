@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Card, Section } from 'react-materialize';
+import { Card, Section } from 'react-materialize'
 
-export default function Home() {
+export default function Blog() {
 
     const blogURL = 'https://ygcapi.azurewebsites.net/api/blog';
 
@@ -37,11 +37,9 @@ export default function Home() {
                             <p>{blog.creator.dateOfBirth}</p>
                             <p>{blog.creator.status}</p>
                         </Card>
-
                     )
                 })
             }
         </Section>
-
     )
 }
