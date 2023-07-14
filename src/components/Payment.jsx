@@ -15,6 +15,7 @@ export default function Payment() {
     const { classId } = useParams();
     const [payments, setPayments] = useState([]);
     const [paymentId, setPaymentId] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const getAllPayments = async () => {
@@ -55,11 +56,24 @@ export default function Payment() {
             if (error.message.includes('409')) {
                 alert('You are already booking this class');
                 navigate('/class')
+            } else if (error.message.includes('400')) {
+                alert('Please select method payment');
             }
         }
 
     }
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    }
+
+    const handleConfirm = (e) => {
+        setIsModalOpen(false);
+        handlePayment(e);
+    }
 
     return (
         <Section>
@@ -75,9 +89,28 @@ export default function Payment() {
                     )
                 })
             }
-            <button onClick={handlePayment} className='btn'>
+            <button onClick={openModal} className='btn'>
                 Payment
             </button>
+            {
+                isModalOpen && (
+                    <>
+                        <div className='modal' style={{
+                            display: 'block',
+                            position: 'absolute',
+                            top: '100px'
+                        }} >
+                            <div className="modal-content">
+                                <p>Are you sure you want to do this?</p>
+                                <div className="modal-action">
+                                    <button className='btn' onClick={handleCancel}>No</button>
+                                    <button className='btn' onClick={handleConfirm}>Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
         </Section>
     )
 }

@@ -38,13 +38,11 @@ export default function Login() {
                 dispatch(login(userData)); // store user data in redux
 
                 navigate('/');
-            } else {
-                navigate('/login');
             }
 
         } catch (error) {
-            // Xử lý lỗi nếu xảy ra
-            console.error(error);
+            alert('Please check again your phone or password.')
+            navigate('/login');
         }
     }
 

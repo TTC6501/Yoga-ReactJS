@@ -2,12 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Card, Section } from 'react-materialize';
 import { useSelector } from 'react-redux'
+import moment from 'moment';
 
 export default function Timetable() {
     const timetableURL = 'https://ygcapi.azurewebsites.net/api/timetable/my';
 
     const token = useSelector(state => state.user.token);
     const [timeTable, setTimeTable] = useState([]);
+    const [newDates, setNewDates] = useState([]);
 
     useEffect(() => {
         const getAllTimetable = async () => {
@@ -27,29 +29,11 @@ export default function Timetable() {
 
         getAllTimetable();
 
-        handleFilterAndPush();
-
     }, [token])
-
-    const handleFilterAndPush = () => {
-        const currentDate = new Date();
-
-        const filtered = timeTable.filter((timeTable) => timeTable.time >= currentDate);
-        const smallerDates = timeTable.filter((timeTable) => timeTable.time < currentDate);
-        const newDates = [...filtered, ...smallerDates];
-        setTimeTable(newDates);
-    }
-
 
     return (
         <Section>
-            {
-                timeTable?.map((date) => {
-                    return (
-                        <h5> {date.time}</h5>
-                    )
-                })
-            }
+
             {
                 timeTable?.map((timeTable) => {
                     return (
@@ -57,7 +41,7 @@ export default function Timetable() {
                             <Card>
                                 <p>{timeTable.timetableId}</p>
                                 <p>{timeTable.slotNo}</p>
-                                <p>{timeTable.time}</p>
+                                <p>{moment(timeTable.time).format('YYYY-MM-DD')}</p>
                                 <p>{timeTable.ofClass.className}</p>
                                 <p>{timeTable.ofClass.startDate}</p>
                                 <p>{timeTable.ofClass.endDate}</p>

@@ -18,9 +18,28 @@ export default function Profile() {
     const [dateOfBirth, setDateOfBirth] = useState(null);
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleDateChange = (date) => {
         setDateOfBirth(date);
+    }
+
+    const openModal = (e) => {
+        e.preventDefault();
+        setIsModalOpen(true);
+    }
+    const handleCancel = () => {
+        setFullName(user.fullName);
+        setPhone(user.phone);
+        setDateOfBirth(user.dateOfBirth);
+        setEmail(user.email);
+        setAddress(user.address);
+        setIsModalOpen(false);
+    }
+
+    const handleConfirm = (e) => {
+        setIsModalOpen(false);
+        handleEditProfile(e);
     }
 
     const handleEditProfile = async (e) => {
@@ -72,7 +91,7 @@ export default function Profile() {
                 <Card style={{
                     width: '30%',
                 }}>
-                    <form onSubmit={handleEditProfile}>
+                    <form   >
                         <TextInput label="Full Name" value={fullName} onChange={e => setFullName(e.target.value)} />
                         <TextInput label="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
                         <DatePicker value={dateOfBirth} onChange={handleDateChange}
@@ -81,13 +100,31 @@ export default function Profile() {
                         <TextInput label='Address' value={address} onChange={e => setAddress(e.target.value)} />
                         <TextInput label='Email' email value={email} onChange={e => setEmail(e.target.value)} />
                         <Link to='/password'>Change Password</Link><br />
-                        <button type='submit' className='btn'>
+                        <button className='btn' onClick={openModal}>
                             Edit
                         </button>
+                        {
+                            isModalOpen && (
+                                <>
+                                    <div className='modal' style={{
+                                        display: 'block',
+                                        position: 'absolute',
+                                        top: '100px'
+                                    }} >
+                                        <div className="modal-content">
+                                            <p>Are you sure you want to do this?</p>
+                                            <div className="modal-action">
+                                                <button className='btn' onClick={handleCancel}>No</button>
+                                                <button className='btn' onClick={handleConfirm}>Yes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            )
+                        }
                     </form>
                 </Card>
             </Section>
-
         </Section>
     )
 }
