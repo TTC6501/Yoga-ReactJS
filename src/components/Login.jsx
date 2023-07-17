@@ -36,8 +36,12 @@ export default function Login() {
                     token: token,
                 }
                 dispatch(login(userData)); // store user data in redux
-
-                navigate('/');
+                let result = user.role === 'ADMIN';
+                if (result) {
+                    navigate('/dashboard');
+                } else {
+                    navigate('/');
+                }
             }
 
         } catch (error) {

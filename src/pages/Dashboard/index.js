@@ -1,34 +1,36 @@
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard() {
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleLogout = () => {
         dispatch(logout());
+        navigate('/login')
     }
 
     return (
         <div>
             <h2>Dashboard page</h2>
             <div>
-                <a href="/user">User</a>
+                <Link to="/user">User</Link>
             </div>
             <div>
-                <a href="/staff">Staff</a>
+                <Link to="/staff">Staff</Link>
             </div>
             <div>
-                <a href="/classList">Class</a>
+                <Link to="/classList">Class</Link>
             </div>
             <div>
-                <a href="/courseList">Course</a>
+                <Link to="/courseList">Course</Link>
             </div>
             <div>
-                <a href="/room">Room</a>
+                <Link to="/room">Room</Link>
             </div>
             <div>
-                <a href="/bookingManagement">Booking</a>
+                <Link to="/bookingManagement">Booking</Link>
             </div>
             <div>
                 <button onClick={handleLogout}>

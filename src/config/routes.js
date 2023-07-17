@@ -1,8 +1,8 @@
 const routes = {
     user: '/user',
     dashboard: '/dashboard',
-    class: '/class',
-    course: '/course',
+    class: '/classList',
+    course: '/courseList',
     room: '/room',
     createCourse: '/createCourse',
     createClass: '/createClass',

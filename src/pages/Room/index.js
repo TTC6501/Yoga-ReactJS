@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Room() {
     const [Rooms, setRooms] = useState([]);
@@ -32,11 +33,11 @@ function Room() {
         <div>
             <h2>Room page</h2>
             <div>
-                <a href="/dashboard">Dashboard</a>
+                <Link to="/dashboard">Dashboard</Link>
             </div>
             <div>
                 <form onSubmit={handleSearch}>
-                <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search Room" />
+                    <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search Room" />
                 </form>
                 <table style={{ borderCollapse: 'collapse' }}>
                     <thead>

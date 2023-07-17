@@ -33,13 +33,14 @@ import Staff from './pages/Staff';
 function App() {
 
   const user = useSelector(state => state.user.user);
-  const admin = 'admin';
+  const admin = 'ADMIN';
 
   return (
     <div>
+
       {/* User, Staff UI */}
       {
-        user?.role.toLowerCase() !== admin && (
+        user?.role !== admin && (
           <>
             <Header />
             <Routes>
@@ -65,7 +66,7 @@ function App() {
       {/* Admin UI */}
 
       {
-        user?.role.toLowerCase() === admin && (
+        user?.role === admin && (
           <>
             <Routes>
               <Route path="/" element={<Navigate to={config.routes.dashboard} />} />
