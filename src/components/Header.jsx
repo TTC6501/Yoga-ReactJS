@@ -1,15 +1,17 @@
 import React from 'react'
 import { Navbar } from 'react-materialize';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../redux/userSlice';
 
 export default function Header() {
     const user = useSelector((state) => state.user.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         dispatch(logout());
+        navigate('/login');
     }
 
     return (
