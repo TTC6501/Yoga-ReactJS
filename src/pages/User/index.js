@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 function User() {
+    const token = useSelector(state => state.user.token);
+
     const [Users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
-    const token =
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MzI1MzE4LCJleHAiOjE2ODk0MTE3MTh9.pzxYhuZgJ9SLWDzj2oDACxSn7Lko6nWssHCy3xpfhbo';
 
     const handleSearch = (e) => {
         const term = e.target.value;
@@ -62,7 +64,7 @@ function User() {
         <div>
             <h2>User page</h2>
             <div>
-                <a href="/dashboard">Dashboard</a>
+                <Link to="/dashboard">Dashboard</Link>
             </div>
             <div>
                 <form onSubmit={handleSearch}>

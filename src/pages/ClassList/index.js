@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
 
 function Class() {
-    const token =
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MzI1MzE4LCJleHAiOjE2ODk0MTE3MTh9.pzxYhuZgJ9SLWDzj2oDACxSn7Lko6nWssHCy3xpfhbo';
+    const token = useSelector(state => state.user.token);
+
     let navigate = useNavigate();
     const [Classs, setClasss] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -150,7 +151,7 @@ function Class() {
         <div>
             <h2>Class page</h2>
             <div>
-                <a href="/dashboard">Dashboard</a>
+                <Link to="/dashboard">Dashboard</Link>
             </div>
             <div>
                 <button onClick={navigateToCreateClass}>Create class</button>

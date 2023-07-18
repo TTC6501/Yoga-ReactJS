@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function BookingManagement() {
-    const token =
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MzI1MzE4LCJleHAiOjE2ODk0MTE3MTh9.pzxYhuZgJ9SLWDzj2oDACxSn7Lko6nWssHCy3xpfhbo';
+    const token = useSelector(state => state.user.token);
+
     const [bookings, setBookings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -29,7 +31,7 @@ function BookingManagement() {
             <div>
                 <h2>Booking Management</h2>
                 <div>
-                    <a href="/dashboard">Dashboard</a>
+                    <Link to="/dashboard">Dashboard</Link>
                 </div>
                 <form>
                     <input

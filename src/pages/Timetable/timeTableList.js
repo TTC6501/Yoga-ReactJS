@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function TimeTableList() {
     let navigate = useNavigate();
@@ -18,8 +19,8 @@ function TimeTableList() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
-    const token =
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MzI1MzE4LCJleHAiOjE2ODk0MTE3MTh9.pzxYhuZgJ9SLWDzj2oDACxSn7Lko6nWssHCy3xpfhbo';
+    const token = useSelector(state => state.user.token);
+
 
     const openModalWithItem = (item) => {
         setCurrentItem(item);
@@ -41,7 +42,7 @@ function TimeTableList() {
     }, [classId]);
 
     const navigateToClass = () => {
-        navigate('/class');
+        navigate('/classList');
     };
 
     const fetchTimeTableById = async (timetableId) => {
