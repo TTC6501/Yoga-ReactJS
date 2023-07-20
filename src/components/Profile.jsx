@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { updateProfile } from '../redux/userSlice';
+import './Profile.css';
 
 export default function Profile() {
     const user = useSelector(state => state.user.user);
@@ -84,12 +85,13 @@ export default function Profile() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '70px'
+            padding: '70px',
+            marginTop: '30px'
         }}>
             <Card style={{
                 width: '30%',
             }}>
-                <h3 className='center'>Profile</h3>
+                <h3 className='profile_title'>Profile</h3>
 
                 <form   >
                     <TextInput label="Full Name" value={fullName} onChange={e => setFullName(e.target.value)} />
@@ -100,22 +102,18 @@ export default function Profile() {
                     <TextInput label='Address' value={address} onChange={e => setAddress(e.target.value)} />
                     <TextInput label='Email' email value={email} onChange={e => setEmail(e.target.value)} />
                     <Link to='/password'>Change Password</Link><br />
-                    <button className='btn' onClick={openModal}>
+                    <button className='btn profile_btnEdit' onClick={openModal}>
                         Edit
                     </button>
                     {
                         isModalOpen && (
                             <>
-                                <div className='modal' style={{
-                                    display: 'block',
-                                    position: 'absolute',
-                                    top: '100px'
-                                }} >
+                                <div className='modal profile_modal'>
                                     <div className="modal-content">
-                                        <p>Are you sure you want to do this?</p>
+                                        <p className='profile_textConfirm'>Are you sure you want to do this?</p>
                                         <div className="modal-action">
-                                            <button className='btn' onClick={handleCancel}>No</button>
-                                            <button className='btn' onClick={handleConfirm}>Yes</button>
+                                            <button className='btn profile_btnNo' onClick={handleCancel}>No</button>
+                                            <button className='btn profile_btnYes' onClick={handleConfirm}>Yes</button>
                                         </div>
                                     </div>
                                 </div>

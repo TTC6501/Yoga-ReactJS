@@ -1,78 +1,44 @@
-.section-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .card {
-    width: calc(33.33% - 10px);
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #f8f8f8;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .class-name {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .date-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .start-date,
-  .end-date {
-    font-size: 14px;
-    color: #888;
-  }
-  
-  .capacity {
-    font-size: 14px;
-    margin-top: 10px;
-  }
-  
-  .course-description {
-    font-size: 14px;
-    text-align: center;
-  }
-  
-  .course-price {
-    font-size: 16px;
-    font-weight: bold;
-    align-self: flex-end;
-  }
-  
-  .btn {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #555;
-  }
-  .card-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .card {
-    flex-basis: calc(33.33% - 20px);
-    margin-bottom: 20px;
-  }
-  
+.class_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+
+.class_card{
+  width: 30%;
+}
+
+.className {
+  color: #E9B384;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.courseName{
+  color: #EEEDED;
+  padding: 5px;
+}
+
+.courseDescription{
+  color: #DBDFEA ;
+  font-size: 17px;
+  text-align: left;
+  padding: 20px;
+}
+
+.coursePrice{
+  color: #F3AA60;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.btnDetailClass{
+  border-radius: 8px !important;
+  background-color: #1D5D9B !important;
+  margin-top: 20px;
+}
+
+.detailsClass-text{
+  font-family: sans-serif;
+}

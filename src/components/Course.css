@@ -1,11 +1,49 @@
-.card-container {
+.course_container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-top: 70px;
   }
-  
-  .card {
-    flex-basis: calc(33.33% - 20px);
-    margin-bottom: 20px;
-  }
+
+.card_background{
+  background-color: #526D82 !important;
+  text-align: center;
+}
+
+.course_card{
+  width: 30%;
+}
+
+.course-name{
+  color: #EEEDED;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 10px;
+  margin-top: 0;
+}
+
+.course-description{
+  color: #DBDFEA ;
+  font-size: 18px;
+  text-align: left;
+}
+
+.course-price{
+  color: #F3AA60;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+  margin-top: 20px;
+  min-height: 100px;
+}
+
+.course_btnDetail{
+  position: absolute;
+  top: 400px;
+  left: 180px;
+  border-radius: 8px !important;
+  background-color: #1D5D9B !important;
+}
+
+.details-text{
+  font-family: sans-serif;
+}
   

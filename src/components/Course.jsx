@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Card, Section } from 'react-materialize';
+import { Card } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import './Course.css';
 export default function Course() {
@@ -23,35 +23,19 @@ export default function Course() {
     }, [])
 
     return (
-        <div className="card-container">
+        <div className="course_container">
             {courses?.map((course) => (
-                <Card className="card" key={course.courseId}>
-                    <p>{course.name}</p>
-                    <p>{course.description}</p>
-                    <p>{course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
+                <Card className="card_background course_card" key={course.courseId}>
+                    <h3 className='course-name'>{course.name}</h3>
+                    <p className='course-description'>{course.description}</p>
+                    <p className='course-price'>{course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
                     <Link to={`/course/${course.courseId}`}>
-                        <button className="btn">Details</button>
+                        <button className="btn course_btnDetail">
+                            <span className='details-text'>Details</span>
+                        </button>
                     </Link>
                 </Card>
             ))}
         </div>
-        // <Section>
-        //     {
-        //         courses?.map((course) => {
-        //             return (
-        //                 <Card key={course.courseId}>
-        //                     <p>{course.name}</p>
-        //                     <p>{course.description}</p>
-        //                     <p>{course.price}</p>
-        //                     <Link to={`/course/${course.courseId}`}>
-        //                         <button className='btn'>
-        //                             Details
-        //                         </button>
-        //                     </Link>
-        //                 </Card>
-        //             )
-        //         })
-        //     }
-        // </Section>
     )
 }

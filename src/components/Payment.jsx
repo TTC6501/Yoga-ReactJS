@@ -43,7 +43,6 @@ export default function Payment() {
         const headers = {
             'Authorization': 'Bearer ' + token,
             'accept': '*/*'
-
         }
 
         try {
@@ -52,7 +51,6 @@ export default function Payment() {
                 alert('Booking successfully');
                 navigate('/')
             }
-
         } catch (error) {
             if (error.message.includes('409')) {
                 alert('You are already booking this class');
@@ -78,9 +76,12 @@ export default function Payment() {
 
     return (
         <Section>
-            <div className="payment-container">
+            <div className="payment_container">
                 {payments?.map((payment, index) => (
-                    <div key={payment.id} className="payment-label">
+                    <div key={payment.id}>
+                        <div>
+                            <img src={imagePayment[index]} className="payment-image" alt={payment.name} />
+                        </div>
                         <label>
                             <input
                                 className="payment-radio"
@@ -89,31 +90,25 @@ export default function Payment() {
                                 onChange={() => setPaymentId(payment.id)}
                             />
                             <span>{payment.name}</span>
-                            <img src={imagePayment[index]} className="payment-image" alt={payment.name} />
                         </label>
                     </div>
                 ))}
+                <br />
+                <button onClick={openModal} className="btn">
+                    Payment
+                </button>
             </div>
-            <button onClick={openModal} className="btn">
-                Payment
-            </button>
+
             {isModalOpen && (
                 <>
-                    <div
-                        className="modal"
-                        style={{
-                            display: 'block',
-                            position: 'absolute',
-                            top: '100px',
-                        }}
-                    >
+                    <div className="modal payment_modal">
                         <div className="modal-content">
-                            <p>Are you sure you want to do this?</p>
+                            <p className='payment_textConfirm'>Are you sure you want to do this?</p>
                             <div className="modal-action">
-                                <button className="btn" onClick={handleCancel}>
+                                <button className="btn payment_btnNo" onClick={handleCancel}>
                                     No
                                 </button>
-                                <button className="btn" onClick={handleConfirm}>
+                                <button className="btn payment_btnYes" onClick={handleConfirm}>
                                     Yes
                                 </button>
                             </div>
@@ -122,41 +117,5 @@ export default function Payment() {
                 </>
             )}
         </Section>
-        // <Section>
-        //     {
-        //         payments?.map((payment) => {
-        //             return (
-        //                 <div key={payment.id}>
-        //                     <label>
-        //                         <input name='group' type="radio" onChange={() => setPaymentId(payment.id)} />
-        //                         <span>{payment.name}</span>
-        //                     </label>
-        //                 </div>
-        //             )
-        //         })
-        //     }
-        //     <button onClick={openModal} className='btn'>
-        //         Payment
-        //     </button>
-        //     {
-        //         isModalOpen && (
-        //             <>
-        //                 <div className='modal' style={{
-        //                     display: 'block',
-        //                     position: 'absolute',
-        //                     top: '100px'
-        //                 }} >
-        //                     <div className="modal-content">
-        //                         <p>Are you sure you want to do this?</p>
-        //                         <div className="modal-action">
-        //                             <button className='btn' onClick={handleCancel}>No</button>
-        //                             <button className='btn' onClick={handleConfirm}>Yes</button>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </>
-        //         )
-        //     }
-        // </Section>
     )
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Card, Section } from 'react-materialize';
 import { Link, useParams } from 'react-router-dom'
+import './ClassDetails.css';
+import { Container } from 'react-materialize';
 
 export default function ClassDetails() {
     const { classId } = useParams();
@@ -24,37 +25,28 @@ export default function ClassDetails() {
     }, [])
 
     return (
-        <Section>
+        <div className='classDetail_container'>
             {Class ? (
-                <Card>
-                    <h3>Class: {Class.className}</h3>
-                    {Class.course ? (
-                        <h4>Course: {Class.course.name}</h4>
-                    ) : (
-                        <h4>Course: Loading...</h4>
-                    )}
-                    <p><strong style={{
-                        fontSize: '25px'
-                    }}>{Class.startDate}</strong></p>
-                    <p><strong style={{
-                        fontSize: '25px'
-                    }}>{Class.endDate}</strong></p>
-                    <p><strong style={{
-                        fontSize: '25px'
-                    }}>Mentor: {Class.instructor.fullName}</strong></p>
-                    <p><strong style={{
-                        fontSize: '25px',
-                        fontStyle: 'italic'
-                    }}>{Class.course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</strong></p>
-                    <Link to={`/payment/${Class.classId}`}>
-                        <button className='btn'>
-                            Book Class
-                        </button>
-                    </Link>
-                </Card>
+                <Container className='center'>
+                    <h2 className='classDetail_className'>Class: {Class.className}</h2>
+
+                    <h4 className='classDetail_courseName'>Course: {Class.course.name}</h4>
+
+                    <p>Start date: <span className='classDetail_startDate'>{Class.startDate}</span></p>
+                    <p>End date: <span className='classDetail_endDate' >{Class.endDate}</span></p>
+                    <p>Instructor: <span className='classDetail_instructorName' >{Class.instructor.fullName}</span></p>
+                    <p className='classDetail_courseDescription'>{Class.course.description}</p>
+                    <p><span className='classDetail_coursePrice' >{Class.course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span></p>
+                    <button className='btn classDetail_btnBookClass'>
+                        <Link to={`/payment/${Class.classId}`}>
+                            <span className='classDetail_bookClass'> Book Class</span>
+                        </Link>
+                    </button>
+
+                </Container>
             ) : (
                 <p>Loading class details...</p>
             )}
-        </Section>
+        </div>
     )
 }

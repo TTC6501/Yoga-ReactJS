@@ -1,11 +1,49 @@
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .card {
-    flex-basis: calc(33.33% - 20px);
-    margin-bottom: 20px;
-  }
-  
+.booking_container {
+    text-align: center;
+    background-color: #f0f2f5;
+    margin-top: 70px;
+}
+
+.booking_cardContainer{
+  width: 50% !important;
+}
+
+.booking_className{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.booking_courseName{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 5px;
+}
+
+.booking_startDate{
+  font-size: 20px;
+  color: #1D5D9B;
+  font-weight: bold;
+}
+
+.booking_endDate{
+  font-size: 20px;
+  color: #1D5D9B;
+  font-weight: bold;
+}
+
+.booking_instructorName{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.booking_instructorPhone{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.booking_btnDetail{
+  border-radius: 8px !important;
+  margin: 20px;
+}
+
+.booking_detail{
+  color: #fff;
+}

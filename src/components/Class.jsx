@@ -21,21 +21,20 @@ export default function Class() {
 
         getAllClasses();
     }, [])
-
     return (
         <Section>
-            <div className="card-container">
+            <div className="class_container">
                 {classes?.map((element) => (
-                    <Card className="card" key={element.classId}>
-                        <h3>Class: {element.className}</h3>
-                        <h5>Course: {element.course.name}</h5>
-                        <p>{element.course.description}</p>
-                        <p><strong style={{
-                            fontSize: '25px',
-                            fontStyle: 'italic'
-                        }}>{element.course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</strong></p>
+                    <Card className="card_background class_card" key={element.classId}>
+                        <h3 className='className'>{element.className} Class</h3>
+                        <h5 >Course: <span className='courseName'>{element.course.name}</span> </h5>
+                        <p>
+                            <strong className='coursePrice'>{element.course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</strong>
+                        </p>
                         <Link to={`/class/${element.classId}`}>
-                            <button className="btn">Details</button>
+                            <button className="btn btnDetailClass">
+                                <span className='detailsClass-text'>Details</span>
+                            </button>
                         </Link>
                     </Card>
                 ))}

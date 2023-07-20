@@ -1,0 +1,35 @@
+.navbar_header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;   
+    z-index: 1000;
+}
+
+.nav-wrapper{
+    background-color: #404258;
+    padding-left: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.imageHeader{
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 5px;   
+}
+
+.logout{
+    position: absolute;
+    left: 90%;
+    
+}
+
+.login{
+    position: absolute;
+    left: 90%;
+}

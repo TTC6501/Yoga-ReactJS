@@ -16,7 +16,7 @@ function Course() {
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 1;
+    const itemsPerPage = 5;
 
     const handleSearch = (e) => {
         const term = e.target.value;

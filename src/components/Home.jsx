@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, Section } from 'react-materialize';
+import { Card } from 'react-materialize';
 import ReactPlayer from 'react-player';
 import { VscMute, VscUnmute } from 'react-icons/vsc';
 import './Home.css';
@@ -44,115 +44,54 @@ export default function Home() {
                 )}
                 <div className='introBottom'></div>
             </div>
-            <div class="Service_place">
-                <h2>SERVICE</h2>
+            <hr />
+            <div >
+                <h3 className='service-title'>SERVICE</h3>
+                <div className='service-container'>
+                    <div className="card grey darken-4">
+                        <div className='card-image'>
+                            <img src='service_image_2.jpg' className='service-image' alt='image 1' />
+                        </div>
+                        <div className="card-content white-text">
+                            <span class="card-title">Personal Trainer</span>
+                            <p>Workout with a Personal Trainer in a 1-on-1 format, specially designed for your fitness and fitness goals.</p>
+                        </div>
+                    </div>
+                    <div className="card grey darken-4">
+                        <div className='card-image'>
+                            <img src='service_image_1.jpg' className='service-image' alt='image 2' />
+                        </div>
+                        <div class="card-content white-text">
+                            <span class="card-title">Yoga</span>
+                            <p>Many Yoga training programs from basic to advanced such as Inside, Detox, Hatha, bell meditation, etc. will bring you a lot of quality Yoga exercises from domestic and foreign masters.</p>
+                        </div>
+                    </div>
+                    <div className="card grey darken-4">
+                        <div className='card-image'>
+                            <img src='service_image_3.jpg' className='service-image' alt='image 3' />
+                        </div>
+                        <div className="card-content white-text">
+                            <span className="card-title">Muscle Relaxants</span>
+                            <p>Highly specialized master not only helps you recover your body after hours of exercise but also supports therapy for bone and joint problems that you have.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="image-container">
-                <img src="https://oms.hotdeal.vn/images/editors/sources/000357570457/357570-the-tap-yoga-Prince-Yoga-Center-body-5.jpg" alt="Image 1" />
-                <img src="https://hdfitness.vn/wp-content/uploads/2023/05/kinh-nghiem-lua-chon-do-tap-yoga-6-min-1024x683.jpg" alt="Image 2" />
-                <img src="https://cdn.batdongsan.com.vi/gpictures/500x250/7295/MnxBRjFRaXBORHBQeXNFc3R0YkhWTE1WV2RiYmZGQ1Jyd25lU0RfS1NvdkxNbA.jpg" alt="Image 3" />
+
+            <hr />
+            <div>
+                <h3 className='blogHome_header'>BLOG POSTS MAKE YOU BETTER</h3>
             </div>
-            <div class="Blog_place">
-                <h2>BLOG</h2>
-            </div>
-            <div className="blog-container">
+            <div className="blogHome_container">
                 {blogs?.map((blog) => {
                     return (
-                        <Card className="blog-card" key={blog.blogId}>
-                            <h5 className="blog-title">{blog.title}</h5>
-                            <p className="blog-content">{blog.content}</p>
+                        <Card className='card_background blogHome_card' key={blog.blogId}>
+                            <h5 className="blogHome_title">{blog.title}</h5>
+                            <p className="blogHome_content">{blog.content}</p>
                         </Card>
                     );
                 })}
             </div>
-            {/* <div className="customer-reviews">
-                <h1>EVALUATE</h1>
-                <div className="row">
-                    <div className="col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <p className="card-subtitle">- John Doe</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="card-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                                <p className="card-subtitle">- Jane Smith</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <p className="card-subtitle">- John Doe</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="card-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                                <p className="card-subtitle">- Jane Smith</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
         </div>
     );
 }
-
-// import axios from 'axios';
-// import React, { useEffect, useState } from 'react'
-// import { Card, Section } from 'react-materialize';
-// import ReactPlayer from 'react-player';
-// import { VscMute, VscUnmute } from 'react-icons/vsc';
-// import './Home.css'
-
-// export default function Home() {
-
-//     const blogURL = 'https://ygcapi.azurewebsites.net/api/blog';
-
-//     const [blogs, setBlogs] = useState([]);
-
-//     useEffect(() => {
-//         const getAllBlog = async () => {
-//             try {
-//                 const response = await axios.get(blogURL)
-//                 setBlogs(response.data);
-//             } catch (error) {
-//                 console.log(error);
-//             }
-
-//         }
-
-//         getAllBlog();
-//     }, [])
-
-//     return (
-//         <Section>
-//             {
-//                 blogs?.map((blog) => {
-//                     return (
-//                         <Card key={blog.blogId}>
-//                             <h5>{blog.title}</h5>
-//                             <p>{blog.content}</p>
-//                             <p>{blog.creator.phone}</p>
-//                             <p>{blog.creator.email}</p>
-//                             <p>{blog.creator.fullName}</p>
-//                             <p>{blog.creator.address}</p>
-//                             <p>{blog.creator.dateOfBirth}</p>
-//                             <p>{blog.creator.status}</p>
-//                         </Card>
-
-//                     )
-//                 })
-//             }
-//         </Section>
-
-//     )
-// }

@@ -1,0 +1,47 @@
+.classDetail_container{
+    margin-top: 60px;
+    background-color: #f0f0f0;
+}
+
+.classDetail_className{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 20px;
+}
+
+.classDetail_startDate{
+    font-size: 20px;
+    color: #1D5D9B;
+    font-weight: bold;
+}
+
+.classDetail_endDate{
+    font-size: 20px;
+    color: #1D5D9B;
+    font-weight: bold;
+}
+
+.classDetail_instructorName{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.classDetail_courseDescription{
+    text-align: left;
+    font-size: 25px;
+}
+
+.classDetail_coursePrice{
+    color: #F3AA60;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.classDetail_btnBookClass{
+    border-radius: 8px !important;
+    margin: 20px;
+}
+
+.classDetail_bookClass{
+    color: #fff ;
+}

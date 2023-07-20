@@ -1,60 +1,75 @@
 import React from 'react';
+import { Col, Row, Section } from 'react-materialize';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
+
     return (
-        <footer style={footerStyle}>
-            <div className="container">
-                <div style={footerContentStyle}>
-                    <div style={logoStyle}>Yoga</div>
-                    <p style={textStyle}>
-                        Experience the tranquility of Yoga and find your inner balance.
-                    </p>
-                </div>
-                <div style={socialMediaStyle}>
-                    <a href="#" style={iconStyle}>
-                        <i className="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" style={iconStyle}>
-                        <i className="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" style={iconStyle}>
-                        <i className="fab fa-instagram"></i>
-                    </a>
-                </div>
+        <Section style={{ background: '#404258', textAlign: 'center' }}>
+            <div>
+                <h4 className='title-footer white-text'>Experience the tranquility of Yoga and find your inner balance.</h4>
             </div>
-        </footer>
+            <hr />
+            <div>
+                <Row>
+                    <Col m={3}>
+                        <h5 className='head-item-footer'>About Us</h5>
+                        <NavLink to='#'>
+                            Founder
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            CO-Founder
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            CEO
+                        </NavLink>
+                    </Col>
+                    <Col m={3}>
+                        <h5 className='head-item-footer'>Services</h5>
+                        <NavLink to='#'>
+                            Personal Trainer
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            Yoga
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            Muscle relaxants
+                        </NavLink>
+                    </Col>
+                    <Col m={3}>
+                        <h5 className='head-item-footer'>Contact Us</h5>
+                        <NavLink to='#'>
+                            Send Feedback
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            Phone: 0393215170
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            Email: admin@gmail.com
+                        </NavLink>
+                    </Col>
+                    <Col m={3}>
+                        <h5 className='head-item-footer'> Social Media</h5>
+                        <NavLink to='#'>
+                            FaceBook
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            Instagram
+                        </NavLink>
+                        <br />
+                        <NavLink to='#'>
+                            Twitter
+                        </NavLink>
+                    </Col>
+                </Row>
+            </div>
+        </Section>
     );
 }
-
-const footerStyle = {
-    backgroundColor: '#222',
-    padding: '40px 0',
-    color: '#fff',
-};
-
-const footerContentStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '20px',
-};
-
-const logoStyle = {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    marginRight: '10px',
-};
-
-const textStyle = {
-    fontSize: '14px',
-    lineHeight: '1.5',
-};
-
-const socialMediaStyle = {
-    textAlign: 'center',
-};
-
-const iconStyle = {
-    color: '#fff',
-    fontSize: '20px',
-    margin: '0 8px',
-};

@@ -1,23 +1,20 @@
-.blog-container {
+.blog_container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
+    margin-top: 80px;
+}
   
-  .blog-card {
-    width: calc(33.33% - 10px);
-    margin-bottom: 20px;
-  }
+.blog_card{
+  width: 30%;
+}
+
+.blog_title {
+  color: #EEEDED;
+}
   
-  .blog-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .blog-content {
-    font-size: 1rem;
-  }
-  .blog_place{
-    text-align: center;
-  }
+.blog_content {
+  color: #DDE6ED;
+  font-size: 20px;
+}
   

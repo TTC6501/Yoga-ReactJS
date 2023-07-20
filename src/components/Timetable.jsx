@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Card, Section } from 'react-materialize';
+import { Card, Container, Section } from 'react-materialize';
 import { useSelector } from 'react-redux'
 import moment from 'moment';
+import './Timetable.css';
 
 export default function Timetable() {
     const timetableURL = 'https://ygcapi.azurewebsites.net/api/timetable/my';
@@ -31,44 +32,26 @@ export default function Timetable() {
     }, [token])
 
     return (
-        <Section>
-
+        <div className='timetable_container'>
             {
                 timeTable?.map((timeTable) => {
                     return (
-                        <div key={timeTable.timetableId}>
-                            <Card>
-                                <p>{timeTable.timetableId}</p>
-                                <p>{timeTable.slotNo}</p>
-                                <p>{moment(timeTable.time).format('YYYY-MM-DD')}</p>
-                                <p>{timeTable.ofClass.className}</p>
-                                <p>{timeTable.ofClass.startDate}</p>
-                                <p>{timeTable.ofClass.endDate}</p>
-                                <p>{timeTable.ofClass.capacity}</p>
-                                <p>{timeTable.ofClass.instructor.phone}</p>
-                                <p>{timeTable.ofClass.instructor.email}</p>
-                                <p>{timeTable.ofClass.instructor.fullName}</p>
-                                <p>{timeTable.ofClass.instructor.address}</p>
-                                <p>{timeTable.ofClass.instructor.dateOfBirth}</p>
-                                <p>{timeTable.ofClass.instructor.status}</p>
-                                <p>{timeTable.ofClass.course.name}</p>
-                                <p>{timeTable.ofClass.course.description}</p>
-                                <p>{timeTable.ofClass.course.price}</p>
-                                <p>{timeTable.instructor.phone}</p>
-                                <p>{timeTable.instructor.email}</p>
-                                <p>{timeTable.instructor.fullName}</p>
-                                <p>{timeTable.instructor.address}</p>
-                                <p>{timeTable.instructor.dateOfBirth}</p>
-                                <p>{timeTable.instructor.status}</p>
-                                <p>{timeTable.room.name}</p>
-                                <p>{timeTable.room.description}</p>
-
+                        <Container className='timetable_cardContainer' key={timeTable.timetableId}>
+                            <Card className='card'>
+                                <h4 className='timetable_className'>{timeTable.ofClass.className} Class</h4>
+                                <h5 className='timetable_courseName'>Course: {timeTable.ofClass.course.name}</h5>
+                                <p>Slot: <span className='timetable_slot'>{timeTable.slotNo}</span></p>
+                                <p>Start at: <span className='timetable_time'>{timeTable.time}</span></p>
+                                <p>Instructor: <span className='timetable_instructorName'>{timeTable.ofClass.instructor.fullName}</span></p>
+                                <p>Phone: <span className='timetable_instructorPhone'>{timeTable.ofClass.instructor.phone}</span></p>
+                                <p>Substitute instructor: <span className='timetable_substituteInstructorName'> {timeTable.instructor.fullName}</span> (if necessary)</p>
+                                <p>Phone: <span className='timetable_substituteInstructorPhone'>{timeTable.instructor.phone}</span></p>
+                                <p>Room: <span className='timetable_room'>{timeTable.room.name}</span></p>
                             </Card>
-                        </div>
-
+                        </Container>
                     )
                 })
             }
-        </Section>
+        </div>
     )
 }

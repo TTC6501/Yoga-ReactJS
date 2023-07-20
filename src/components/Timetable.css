@@ -1,0 +1,53 @@
+.timetable_container{
+    text-align: center;
+    background-color: #f0f2f5;
+    margin-top: 70px;
+}
+
+.timetable_cardContainer{
+    width: 50% !important;
+}
+
+.timetable_className{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.timetable_courseName{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 5px;
+}
+
+.timetable_slot{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timetable_time{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timetable_instructorName{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timetable_instructorPhone{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timetable_substituteInstructorName{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timetable_substituteInstructorPhone{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timetable_room{
+    font-size: 20px;
+    font-weight: bold;
+}

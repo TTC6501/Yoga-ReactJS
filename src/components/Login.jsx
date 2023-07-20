@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/userSlice';
-
 export default function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -36,12 +35,13 @@ export default function Login() {
                     token: token,
                 }
                 dispatch(login(userData)); // store user data in redux
-                let result = user.role === 'ADMIN';
-                if (result) {
-                    navigate('/dashboard');
-                } else {
-                    navigate('/');
-                }
+                // let result = user.role === 'ADMIN';
+                // if (result) {
+                //     navigate('/dashboard');
+                // } else {
+                //     navigate('/');
+                // }
+                navigate('/');
             }
 
         } catch (error) {
@@ -58,7 +58,7 @@ export default function Login() {
             alignItems: 'center',
             padding: '165px'
         }}>
-            <Card>
+            <Card className='asd'>
                 <form onSubmit={handleLogin}>
                     <div>
                         <TextInput label="Phone" name='phone' onChange={(e) => setPhone(e.target.value)} style={{

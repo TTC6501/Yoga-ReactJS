@@ -1,0 +1,32 @@
+.profile_title{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.profile_btnEdit{
+    margin: 20px;
+    margin-left: 0;
+}
+
+.profile_modal{
+   display: block;
+   position: absolute;
+   top: 200px;
+   width: 500px;
+}
+
+.profile_textConfirm{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.profile_btnNo{
+    margin-left: 150px;
+    margin-top: 20px;
+}
+.profile_btnYes{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+

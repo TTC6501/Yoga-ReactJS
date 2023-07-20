@@ -24,15 +24,12 @@ export default function Blog() {
 
     return (
         <Section>
-            <div class="Blog_place center">
-                <h2>BLOG POSTS MAKE YOU BETTER</h2>
-            </div>
-            <div className="blog-container">
+            <div className="blog_container">
                 {blogs?.map((blog) => {
                     return (
-                        <Card className="blog-card" key={blog.blogId}>
-                            <h5 className="blog-title">{blog.title}</h5>
-                            <p className="blog-content">{blog.content}</p>
+                        <Card className="card_background blog_card" key={blog.blogId}>
+                            <h4 className="blog_title">{blog.title}</h4>
+                            <p className="blog_content">{blog.content}</p>
                         </Card>
                     );
                 })}
