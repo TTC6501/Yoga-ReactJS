@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import { Link, useNavigate } from "react-router-dom";
+import './index.css';
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -12,28 +13,28 @@ function Dashboard() {
     }
 
     return (
-        <div>
-            <h2>Dashboard page</h2>
-            <div>
-                <Link to="/user">User</Link>
+        <div className="dashboard-container">
+            <h2 className="dashboard-title">Dashboard page</h2>
+            <div className="dashboard-container">
+                <Link className="dashboard-links" to="/user">User</Link>
             </div>
-            <div>
-                <Link to="/staff">Staff</Link>
+            <div className="dashboard-container">
+                <Link className="dashboard-links" to="/staff">Staff</Link>
             </div>
-            <div>
-                <Link to="/classList">Class</Link>
+            <div className="dashboard-container">
+                <Link className="dashboard-links" to="/classList">Class</Link>
             </div>
-            <div>
-                <Link to="/courseList">Course</Link>
+            <div className="dashboard-container">
+                <Link className="dashboard-links" to="/courseList">Course</Link>
             </div>
-            <div>
-                <Link to="/room">Room</Link>
+            <div className="dashboard-container">
+                <Link className="dashboard-links" to="/room">Room</Link>
             </div>
-            <div>
-                <Link to="/bookingManagement">Booking</Link>
+            <div className="dashboard-container">
+                <Link className="dashboard-links" to="/bookingManagement">Booking</Link>
             </div>
-            <div>
-                <button onClick={handleLogout}>
+            <div className="dashboard-container">
+                <button className="dashboard-logout" onClick={handleLogout}>
                     Logout
                 </button>
             </div>

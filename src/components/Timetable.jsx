@@ -9,7 +9,6 @@ export default function Timetable() {
 
     const token = useSelector(state => state.user.token);
     const [timeTable, setTimeTable] = useState([]);
-    const [newDates, setNewDates] = useState([]);
 
     useEffect(() => {
         const getAllTimetable = async () => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Card, Section } from 'react-materialize'
-
+import './Blog.css'
 export default function Blog() {
 
     const blogURL = 'https://ygcapi.azurewebsites.net/api/blog';
@@ -24,22 +24,19 @@ export default function Blog() {
 
     return (
         <Section>
-            {
-                blogs?.map((blog) => {
+            <div class="Blog_place center">
+                <h2>BLOG POSTS MAKE YOU BETTER</h2>
+            </div>
+            <div className="blog-container">
+                {blogs?.map((blog) => {
                     return (
-                        <Card key={blog.blogId}>
-                            <h5>{blog.title}</h5>
-                            <p>{blog.content}</p>
-                            <p>{blog.creator.phone}</p>
-                            <p>{blog.creator.email}</p>
-                            <p>{blog.creator.fullName}</p>
-                            <p>{blog.creator.address}</p>
-                            <p>{blog.creator.dateOfBirth}</p>
-                            <p>{blog.creator.status}</p>
+                        <Card className="blog-card" key={blog.blogId}>
+                            <h5 className="blog-title">{blog.title}</h5>
+                            <p className="blog-content">{blog.content}</p>
                         </Card>
-                    )
-                })
-            }
+                    );
+                })}
+            </div>
         </Section>
     )
 }

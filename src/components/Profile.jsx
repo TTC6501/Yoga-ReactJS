@@ -78,53 +78,52 @@ export default function Profile() {
     }, [user.fullName, user.phone, user.dateOfBirth, user.email, user.address]);
 
     return (
-        <Section >
-            <h3 className='center'>Profile</h3>
 
-            <Section style={{
-                backgroundColor: '#f0f2f5',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '70px'
+        <Section style={{
+            backgroundColor: '#f0f2f5',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '70px'
+        }}>
+            <Card style={{
+                width: '30%',
             }}>
-                <Card style={{
-                    width: '30%',
-                }}>
-                    <form   >
-                        <TextInput label="Full Name" value={fullName} onChange={e => setFullName(e.target.value)} />
-                        <TextInput label="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
-                        <DatePicker value={dateOfBirth} onChange={handleDateChange}
-                            dateFormat='dd-MM-yyyy' showYearDropdown scrollableYearDropdown
-                            yearDropdownItemNumber={100} />
-                        <TextInput label='Address' value={address} onChange={e => setAddress(e.target.value)} />
-                        <TextInput label='Email' email value={email} onChange={e => setEmail(e.target.value)} />
-                        <Link to='/password'>Change Password</Link><br />
-                        <button className='btn' onClick={openModal}>
-                            Edit
-                        </button>
-                        {
-                            isModalOpen && (
-                                <>
-                                    <div className='modal' style={{
-                                        display: 'block',
-                                        position: 'absolute',
-                                        top: '100px'
-                                    }} >
-                                        <div className="modal-content">
-                                            <p>Are you sure you want to do this?</p>
-                                            <div className="modal-action">
-                                                <button className='btn' onClick={handleCancel}>No</button>
-                                                <button className='btn' onClick={handleConfirm}>Yes</button>
-                                            </div>
+                <h3 className='center'>Profile</h3>
+
+                <form   >
+                    <TextInput label="Full Name" value={fullName} onChange={e => setFullName(e.target.value)} />
+                    <TextInput label="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
+                    <DatePicker value={dateOfBirth} onChange={handleDateChange}
+                        dateFormat='dd-MM-yyyy' showYearDropdown scrollableYearDropdown
+                        yearDropdownItemNumber={100} />
+                    <TextInput label='Address' value={address} onChange={e => setAddress(e.target.value)} />
+                    <TextInput label='Email' email value={email} onChange={e => setEmail(e.target.value)} />
+                    <Link to='/password'>Change Password</Link><br />
+                    <button className='btn' onClick={openModal}>
+                        Edit
+                    </button>
+                    {
+                        isModalOpen && (
+                            <>
+                                <div className='modal' style={{
+                                    display: 'block',
+                                    position: 'absolute',
+                                    top: '100px'
+                                }} >
+                                    <div className="modal-content">
+                                        <p>Are you sure you want to do this?</p>
+                                        <div className="modal-action">
+                                            <button className='btn' onClick={handleCancel}>No</button>
+                                            <button className='btn' onClick={handleConfirm}>Yes</button>
                                         </div>
                                     </div>
-                                </>
-                            )
-                        }
-                    </form>
-                </Card>
-            </Section>
+                                </div>
+                            </>
+                        )
+                    }
+                </form>
+            </Card>
         </Section>
     )
 }

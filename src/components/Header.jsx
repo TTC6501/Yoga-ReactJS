@@ -14,6 +14,9 @@ export default function Header() {
         navigate('/login');
     }
 
+    const staffRole = "STAFF";
+
+
     return (
         <div>
             <Navbar>
@@ -32,11 +35,22 @@ export default function Header() {
                 {
                     user ? (
                         <>
-                            <li>
-                                <Link to='/booking'>
-                                    Class Booking
-                                </Link>
-                            </li>
+                            {
+                                user.role === staffRole ? (
+                                    <li>
+                                        <Link to='/classList'>
+                                            Schedule
+                                        </Link>
+                                    </li>
+
+                                ) : (
+                                    <li>
+                                        <Link to='/booking'>
+                                            Class Booking
+                                        </Link>
+                                    </li>
+                                )
+                            }
                             <li>
                                 <Link to='/profile'>
                                     Profile

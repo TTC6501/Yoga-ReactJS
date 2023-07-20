@@ -14,27 +14,47 @@ export default function ClassDetails() {
             try {
                 const response = await axios.get(classDetailsURL);
                 setClass(response.data);
+                console.log(Class);
             } catch (error) {
                 console.log(error);
             }
         }
 
         getClass();
-    }, [classDetailsURL])
+    }, [])
 
     return (
         <Section>
-            <Card>
-                <p>{Class.className}</p>
-                <p>{Class.startDate}</p>
-                <p>{Class.endDate}</p>
-                <p>{Class.capacity}</p>
-                <Link to={`/payment/${Class.classId}`}>
-                    <button className='btn'>
-                        Book Class
-                    </button>
-                </Link>
-            </Card>
+            {Class ? (
+                <Card>
+                    <h3>Class: {Class.className}</h3>
+                    {Class.course ? (
+                        <h4>Course: {Class.course.name}</h4>
+                    ) : (
+                        <h4>Course: Loading...</h4>
+                    )}
+                    <p><strong style={{
+                        fontSize: '25px'
+                    }}>{Class.startDate}</strong></p>
+                    <p><strong style={{
+                        fontSize: '25px'
+                    }}>{Class.endDate}</strong></p>
+                    <p><strong style={{
+                        fontSize: '25px'
+                    }}>Mentor: {Class.instructor.fullName}</strong></p>
+                    <p><strong style={{
+                        fontSize: '25px',
+                        fontStyle: 'italic'
+                    }}>{Class.course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</strong></p>
+                    <Link to={`/payment/${Class.classId}`}>
+                        <button className='btn'>
+                            Book Class
+                        </button>
+                    </Link>
+                </Card>
+            ) : (
+                <p>Loading class details...</p>
+            )}
         </Section>
     )
 }

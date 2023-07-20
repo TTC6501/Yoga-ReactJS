@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Card, Section } from 'react-materialize';
 import { Link } from 'react-router-dom';
-
+import './Class.css';
 export default function Class() {
 
     const classURL = 'https://ygcapi.azurewebsites.net/api/class';
@@ -24,32 +24,22 @@ export default function Class() {
 
     return (
         <Section>
-            {
-                classes?.map((element) => {
-                    return (
-                        <Card key={element.classId}>
-                            <p>{element.className}</p>
-                            <p>{element.startDate}</p>
-                            <p>{element.endDate}</p>
-                            <p>{element.capacity}</p>
-                            <p>{element.instructor.phone}</p>
-                            <p>{element.instructor.email}</p>
-                            <p>{element.instructor.fullName}</p>
-                            <p>{element.instructor.address}</p>
-                            <p>{element.instructor.dateOfBirth}</p>
-                            <p>{element.instructor.status}</p>
-                            <p>{element.course.description}</p>
-                            <p>{element.course.name}</p>
-                            <p>{element.course.price}</p>
-                            <Link to={`/class/${element.classId}`}>
-                                <button className='btn'>
-                                    Details
-                                </button>
-                            </Link>
-                        </Card>
-                    )
-                })
-            }
+            <div className="card-container">
+                {classes?.map((element) => (
+                    <Card className="card" key={element.classId}>
+                        <h3>Class: {element.className}</h3>
+                        <h5>Course: {element.course.name}</h5>
+                        <p>{element.course.description}</p>
+                        <p><strong style={{
+                            fontSize: '25px',
+                            fontStyle: 'italic'
+                        }}>{element.course.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</strong></p>
+                        <Link to={`/class/${element.classId}`}>
+                            <button className="btn">Details</button>
+                        </Link>
+                    </Card>
+                ))}
+            </div>
         </Section>
     )
 }

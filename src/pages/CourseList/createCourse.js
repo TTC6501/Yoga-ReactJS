@@ -22,7 +22,7 @@ function CreateCourse() {
     };
 
     const navigateToClass = () => {
-        navigate('/course');
+        navigate('/courseList');
     };
     const handleSubmit = async (e) => {
         e.preventDefault();

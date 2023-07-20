@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 function CreateClass() {
-    const token = useSelector(state => state.user.token);
+    const token = useSelector((state) => state.user.token);
 
     const navigate = useNavigate();
     const [staffList, setStaffList] = useState([]);
     const [courseList, setCourseList] = useState([]);
     const [Class, setClass] = useState({
-        className: '',
+        classTitle: '',
         startDate: '',
         endDate: '',
         capacity: 0,
@@ -23,8 +23,8 @@ function CreateClass() {
         const fetchStaff = async () => {
             const url = 'https://ygcapi.azurewebsites.net/api/user';
             const headers = {
+                Authorization: 'Bearer ' + token,
                 accept: '*/*',
-                Authorization: `Bearer ${token}`,
             };
             const response = await axios.get(url, { headers });
             const staff = response.data.filter((user) => user.role === 'STAFF');
@@ -69,14 +69,13 @@ function CreateClass() {
         try {
             const url = 'https://ygcapi.azurewebsites.net/api/class';
             const headers = {
+                Authorization: 'Bearer ' + token,
                 accept: '*/*',
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
             };
 
-            const response = await axios.post(url, Class, { headers });
+            const response = await axios.post(url, { ...Class, className: Class.classTitle }, { headers }); // Added className: Class.classTitle
             console.log(response.data);
-            navigate('/class');
+            navigate('/classList');
         } catch (error) {
             console.error(error);
         }
@@ -87,12 +86,12 @@ function CreateClass() {
     };
 
     return (
-        <div>
+        <div className="my_component">
             <button onClick={navigateToClass}>Class</button>
             <form onSubmit={handleSubmit}>
                 <label>
                     Class Name:
-                    <input type="text" name="className" onChange={handleChange} />
+                    <input type="text" name="classTitle" onChange={handleChange} />
                 </label>
                 <label>
                     Start Date:

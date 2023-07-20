@@ -1,0 +1,31 @@
+/* Room.css */
+.container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+}

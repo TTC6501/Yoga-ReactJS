@@ -1,0 +1,23 @@
+.blog-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .blog-card {
+    width: calc(33.33% - 10px);
+    margin-bottom: 20px;
+  }
+  
+  .blog-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .blog-content {
+    font-size: 1rem;
+  }
+  .blog_place{
+    text-align: center;
+  }
+  

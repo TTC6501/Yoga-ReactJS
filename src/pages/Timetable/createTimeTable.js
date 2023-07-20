@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Select from 'react-select';
 
 function CreateTimeTable() {
     const navigate = useNavigate();
@@ -8,8 +10,7 @@ function CreateTimeTable() {
     const [instructors, setInstructors] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const token =
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MzI1MzE4LCJleHAiOjE2ODk0MTE3MTh9.pzxYhuZgJ9SLWDzj2oDACxSn7Lko6nWssHCy3xpfhbo';
+    const token = useSelector((state) => state.user.token);
     const [form, setForm] = useState({
         // timetableId: 0,
         // slotNo: 0,
@@ -25,8 +26,8 @@ function CreateTimeTable() {
         const fetchClasses = async () => {
             const url = 'https://ygcapi.azurewebsites.net/api/class';
             const headers = {
-                'Content-Type': 'application/json',
-                Authorization: token,
+                Authorization: 'Bearer ' + token,
+                accept: '*/*',
             };
             try {
                 const response = await axios.get(url, { headers });
@@ -47,8 +48,8 @@ function CreateTimeTable() {
             // const token = 'Bearer ...';
             const url = `https://ygcapi.azurewebsites.net/api/class/${form.classId}`;
             const headers = {
-                'Content-Type': 'application/json',
-                Authorization: token,
+                Authorization: 'Bearer ' + token,
+                accept: '*/*',
             };
             try {
                 const response = await axios.get(url, { headers });
@@ -73,8 +74,8 @@ function CreateTimeTable() {
             //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MjA2OTMyLCJleHAiOjE2ODkyOTMzMzJ9.gahZpRUlrgRy7m6w6gC4uqJcXR7iWrkJwN2DQmEbvvw';
             const url = 'https://ygcapi.azurewebsites.net/api/user';
             const headers = {
-                'Content-Type': 'application/json',
-                Authorization: token,
+                Authorization: 'Bearer ' + token,
+                accept: '*/*',
             };
             try {
                 const response = await axios.get(url, { headers });
@@ -97,8 +98,8 @@ function CreateTimeTable() {
             //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MjA2OTMyLCJleHAiOjE2ODkyOTMzMzJ9.gahZpRUlrgRy7m6w6gC4uqJcXR7iWrkJwN2DQmEbvvw';
             const url = 'https://ygcapi.azurewebsites.net/api/room';
             const headers = {
-                'Content-Type': 'application/json',
-                Authorization: token,
+                Authorization: 'Bearer ' + token,
+                accept: '*/*',
             };
             try {
                 const response = await axios.get(url, { headers });
@@ -114,6 +115,8 @@ function CreateTimeTable() {
         fetchRooms();
     }, []);
 
+    console.log(form);
+
     const formatDateTime = (date) => {
         const yyyy = date.getFullYear();
         const MM = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
@@ -127,13 +130,34 @@ function CreateTimeTable() {
     };
 
     const navigateToClass = () => {
-        navigate('/class');
+        navigate('/classList');
     };
 
-    const handleChange = (e) => {
+    const fetchClassDetails = async (classId) => {
+        const url = `https://ygcapi.azurewebsites.net/api/class/${classId}`;
+        const headers = {
+            Authorization: 'Bearer ' + token,
+            accept: '*/*',
+        };
+        try {
+            const response = await axios.get(url, { headers });
+            setForm((prevForm) => ({
+                ...prevForm,
+                startDate: response.data.startDate,
+                endDate: response.data.endDate,
+            }));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleChange = async (e) => {
         if (e.target.name === 'time') {
             let date = new Date(e.target.value);
             setForm({ ...form, [e.target.name]: formatDateTime(date) });
+        } else if (e.target.name === 'classId') {
+            setForm({ ...form, [e.target.name]: e.target.value, startDate: '', endDate: '' });
+            await fetchClassDetails(e.target.value);
         } else {
             setForm({ ...form, [e.target.name]: e.target.value });
         }
@@ -145,13 +169,13 @@ function CreateTimeTable() {
         //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTIzNDU2Nzg5IiwiaWF0IjoxNjg5MjA2OTMyLCJleHAiOjE2ODkyOTMzMzJ9.gahZpRUlrgRy7m6w6gC4uqJcXR7iWrkJwN2DQmEbvvw';
         const url = 'https://ygcapi.azurewebsites.net/api/timetable';
         const headers = {
-            'Content-Type': 'application/json',
-            Authorization: token,
+            Authorization: 'Bearer ' + token,
+            accept: '*/*',
         };
         try {
             const response = await axios.post(url, form, { headers });
             console.log(response.data);
-            navigate('/class');
+            navigate('/classList');
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 setErrorMessage('Time cannot be before or after startDate and endDate');
@@ -177,34 +201,37 @@ function CreateTimeTable() {
                     <input type="datetime-local" name="time" onChange={handleChange} title="Enter the Time" />
                 </label>
                 <label>
-                    Class ID:
-                    <select name="classId" onChange={handleChange} title="Select the Class ID">
-                        {classes.map((classItem) => (
-                            <option key={classItem.classId} value={classItem.classId}>
-                                {classItem.className}
-                            </option>
-                        ))}
-                    </select>
+                    Class:
+                    <Select
+                        name="classId"
+                        options={classes.map((classItem) => ({ value: classItem.classId, label: classItem.className }))}
+                        onChange={(selectedOption) =>
+                            handleChange({ target: { name: 'classId', value: selectedOption.value } })
+                        }
+                    />
                 </label>
                 <label>
-                    Instructor ID:
-                    <select name="instructorId" onChange={handleChange} title="Select the Instructor ID">
-                        {instructors.map((instructor) => (
-                            <option key={instructor.userId} value={instructor.userId}>
-                                {instructor.fullName}
-                            </option>
-                        ))}
-                    </select>
+                    Instructor:
+                    <Select
+                        name="instructorId"
+                        options={instructors.map((instructor) => ({
+                            value: instructor.userId,
+                            label: instructor.fullName,
+                        }))}
+                        onChange={(selectedOption) =>
+                            handleChange({ target: { name: 'instructorId', value: selectedOption.value } })
+                        }
+                    />
                 </label>
                 <label>
-                    Room ID:
-                    <select name="roomId" onChange={handleChange} title="Select the Room ID">
-                        {rooms.map((room) => (
-                            <option key={room.roomId} value={room.roomId}>
-                                {room.name}
-                            </option>
-                        ))}
-                    </select>
+                    Room:
+                    <Select
+                        name="roomId"
+                        options={rooms.map((room) => ({ value: room.roomId, label: room.name }))}
+                        onChange={(selectedOption) =>
+                            handleChange({ target: { name: 'roomId', value: selectedOption.value } })
+                        }
+                    />
                 </label>
                 <button type="submit">Submit</button>
             </form>

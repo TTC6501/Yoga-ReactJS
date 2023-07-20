@@ -10,5 +10,7 @@ export default function Authenticate({ children }) {
             <Navigate to='/login' />
         )
     }
+
+
     return children;
 }
